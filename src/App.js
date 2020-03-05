@@ -2,18 +2,19 @@ import React from 'react';
 import './assets/base.scss'
 import './App.scss';
 import logo from './assets/img/logo.png'
+import Test from "./component/test";
 
 function App() {
   return (
       <div className="app">
         <header className="header">
           <div className={'header-top'}>
-              <div className={'header-bottom'}>
-                <div className="container">
-                  <div className="row">
-                <img src={logo} alt="logo"/>
-                <h1>усыновление <br/> в россии</h1>
-                  </div>
+            <div className={'header-bottom'}>
+              <div className="container">
+                <div className="row">
+                  <img src={logo} alt="logo"/>
+                  <h1>усыновление <br/> в россии</h1>
+                </div>
               </div>
             </div>
           </div>
@@ -25,6 +26,7 @@ function App() {
             </ul>
           </nav>
         </header>
+        <Test/>
       </div>
   );
 }

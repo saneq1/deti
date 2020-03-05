@@ -7,7 +7,7 @@ const ChildCard = ({child}) => {
       <div className='card'>
         <div className='card-about'>
           <div className='card-about-name'>{child.name}</div>
-          <div className='card-about-city'>{child.region.title}</div>
+          <div className='card-about-city'>{child.region?.title}</div>
           <div className='card-about-age'>{child.age}, {child.gender.id === 1 ? 'мальчик' : 'девочка'}</div>
           <p className='card-about-info'>{child.character}</p>
         </div>

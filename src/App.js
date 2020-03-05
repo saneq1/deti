@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import './assets/base.scss'
 import './App.scss';
 import gerb from './assets/img/gerb.png';
@@ -10,22 +10,36 @@ import family from './assets/img/family.png'
 import ReactPaginate from 'react-paginate';
 import ChildCard from "./component/childCard/childCard";
 import axios from "axios";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import {filtersActions} from "./config/redux/filters/filtersActions";
+import {childrenActions} from "./config/redux/children/childrenActions";
+
 
 function App() {
-  const [childrens, setChildrens] = useState([]);
-  const [params, setParams] = useState({
-    limit: 6,
-    page: 1
-  });
+  const dispatch = useDispatch();
+  const genders = useSelector(state => state.filters.genders);
+  const {data: children, total, pages} = useSelector(state => state.children, shallowEqual);
+  const [gender, setGender] = useState();
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
-    axios.get(`/children?limit=${params.limit}&page=${params.page}`).then(res => {
-      if (res.status === 200) {
-        console.log(res.data.rows);
-        setChildrens(res.data.rows);
-      }
-    });
+    dispatch(childrenActions.getChildren({genderId: gender, page}))
+  }, [page]);
+
+  const selectGender = useMemo(() => (gender) => dispatch(filtersActions.selectGender(gender)), [dispatch]);
+
+  useEffect(() => {
+    dispatch(filtersActions.listGenders())
   }, []);
+
+  // useEffect(() => {
+  //   axios.get(`/children?limit=${params.limit}&page=${params.page}`).then(res => {
+  //     if (res.status === 200) {
+  //       console.log(res.data.rows);
+  //       setChildrens(res.data.rows);
+  //     }
+  //   });
+  // }, []);
 
   return (
       <div className="app">
@@ -60,7 +74,7 @@ function App() {
               <img src={family} alt="family"/>
               <div className={'info-inner-counter'}>
                 <span>
-                  42 432
+                  {total}
                 </span>
                 <span>
                   Число детей, информация о которых содержится в федеральном банке данных
@@ -73,17 +87,22 @@ function App() {
             <div className="search-inner">
               <span>Пол</span>
               <div className="search-inner-radio">
-                <label className="checkbox"> <input type="radio" name={'search'}/> <span
+                <label className="checkbox"> <input type="radio" name={'search'} value={undefined} onChange={event => setGender(event.target.value)}/> <span
                     className="radiomark">не важно</span>
                 </label>
-                <label className="checkbox"> <input type="radio" name={'search'}/> <span
-                    className="radiomark"> мальчик</span>
-                </label>
-                <label className="checkbox"> <input type="radio" name={'search'}/> <span
-                    className="radiomark">девочка</span>
-                </label>
+                {
+                  genders.map(gender => <label key={gender.id} className="checkbox">
+                    <input
+                        type="radio"
+                        name={'search'}
+                        value={gender.id}
+                        onChange={event => setGender(event.target.value)}
+                    /> <span
+                      className="radiomark">{gender.title}</span>
+                  </label>)
+                }
               </div>
-              <button className={'search-inner-button'}> Искать</button>
+              <button className={'search-inner-button'} onClick={() => dispatch(childrenActions.getChildren({genderId: gender}))}> Искать</button>
             </div>
           </div>
 
@@ -92,7 +111,7 @@ function App() {
             <div className={'list-counter'}>Нашлось 43 159 анкет</div>
 
             {
-              childrens.map(child => {
+              children.map(child => {
                 return <ChildCard child={child} key={child.id}/>
               })
             }
@@ -100,11 +119,11 @@ function App() {
             <ReactPaginate
                 breakLabel={'...'}
                 breakClassName={'break-me'}
-                pageCount={122}
+                pageCount={pages}
                 marginPagesDisplayed={1}
                 pageRangeDisplayed={2}
-                onPageChange={() => {
-                }}
+                initialPage={page}
+                onPageChange={({selected}) => setPage(selected)}
                 containerClassName={'pagination'}
                 subContainerClassName={'pages pagination'}
                 activeClassName={'active'}

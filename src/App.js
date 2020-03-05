@@ -9,7 +9,6 @@ import arrow from './assets/img/arrow.png'
 import family from './assets/img/family.png'
 import ReactPaginate from 'react-paginate';
 import ChildCard from "./component/childCard/childCard";
-import axios from "axios";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {filtersActions} from "./config/redux/filters/filtersActions";
 import {childrenActions} from "./config/redux/children/childrenActions";
@@ -20,7 +19,9 @@ function App() {
   const genders = useSelector(state => state.filters.genders);
   const {data: children, total, pages} = useSelector(state => state.children, shallowEqual);
   const [gender, setGender] = useState();
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(7);
+
+  console.log(page)
 
   useEffect(() => {
     dispatch(childrenActions.getChildren({genderId: gender, page}))
@@ -32,14 +33,13 @@ function App() {
     dispatch(filtersActions.listGenders())
   }, []);
 
-  // useEffect(() => {
-  //   axios.get(`/children?limit=${params.limit}&page=${params.page}`).then(res => {
-  //     if (res.status === 200) {
-  //       console.log(res.data.rows);
-  //       setChildrens(res.data.rows);
-  //     }
-  //   });
-  // }, []);
+  const  buttonSearch= () =>{
+
+    setPage(0);
+    console.log(page)
+    dispatch(childrenActions.getChildren({genderId: gender, page}));
+  }
+
 
   return (
       <div className="app">
@@ -102,7 +102,7 @@ function App() {
                   </label>)
                 }
               </div>
-              <button className={'search-inner-button'} onClick={() => dispatch(childrenActions.getChildren({genderId: gender}))}> Искать</button>
+              <button className={'search-inner-button'} onClick={() => buttonSearch()}> Искать</button>
             </div>
           </div>
 
@@ -119,7 +119,7 @@ function App() {
             <ReactPaginate
                 breakLabel={'...'}
                 breakClassName={'break-me'}
-                pageCount={pages}
+                pageCount={pages }
                 marginPagesDisplayed={1}
                 pageRangeDisplayed={2}
                 initialPage={page}
@@ -128,6 +128,8 @@ function App() {
                 subContainerClassName={'pages pagination'}
                 activeClassName={'active'}
             />
+
+            <button onClick={()=> setPage(0)}>ввв</button>
           </div>
         </div>
 

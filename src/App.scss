@@ -194,6 +194,11 @@
           margin: 10px 0 20px;
         }
       }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
     }
 
     .pagination {
@@ -241,6 +246,7 @@
       .row {
         justify-content: space-between;
         padding-bottom: 25px;
+
         .footer-about {
           display: flex;
           align-items: center;

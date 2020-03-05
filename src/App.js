@@ -1,17 +1,32 @@
-import React from 'react';
-import './assets/base.scss';
+import React, {useEffect, useState} from 'react';
+import './assets/base.scss'
 import './App.scss';
-import logo from './assets/img/logo.png';
-import arrow from './assets/img/arrow.png';
-import family from './assets/img/family.png';
-import child from './assets/img/child.png';
 import gerb from './assets/img/gerb.png';
 import phone from './assets/img/phone.png';
 import email from './assets/img/email.png';
+import logo from './assets/img/logo.png'
+import arrow from './assets/img/arrow.png'
+import family from './assets/img/family.png'
 import ReactPaginate from 'react-paginate';
-
+import ChildCard from "./component/childCard/childCard";
+import axios from "axios";
 
 function App() {
+  const [childrens, setChildrens] = useState([]);
+  const [params, setParams] = useState({
+    limit: 6,
+    page: 1
+  });
+
+  useEffect(() => {
+    axios.get(`/children?limit=${params.limit}&page=${params.page}`).then(res => {
+      if (res.status === 200) {
+        console.log(res.data.rows);
+        setChildrens(res.data.rows);
+      }
+    });
+  }, []);
+
   return (
       <div className="app">
 
@@ -77,18 +92,8 @@ function App() {
             <div className={'list-counter'}>Нашлось 43 159 анкет</div>
 
             {
-              [0, 1, 2].map(i => {
-                return (
-                    <div className={'card'} key={i}>
-                      <div className={'card-about'}>
-                        <div className={'card-about-name'}>Анна С.</div>
-                        <div className={'card-about-city'}>Кабардино-Балкарская Республика</div>
-                        <div className={'card-about-age'}>16 лет , девочка</div>
-                        <p className={'card-about-info'}>Анна активная и эмоциональная девочка</p>
-                      </div>
-                      <img src={child} alt="child"/>
-                    </div>
-                )
+              childrens.map(child => {
+                return <ChildCard child={child} key={child.id}/>
               })
             }
 
@@ -112,14 +117,12 @@ function App() {
             <div className={'footer-bottom'}>
               <div className="container">
                 <div className="row">
-
                   <div className="footer-about">
                     <img src={gerb} alt="logo" className={'footer-about-gerb'}/>
                     <span className={'footer-about-caption'}>
                       Министерство просвещения <br/> РОССИЙСКОЙ ФЕДЕРАЦИИ
                     </span>
                   </div>
-
                   <div className="footer-info">
                     <span>
                     <img src={phone} alt="logo"/>
@@ -135,12 +138,11 @@ function App() {
                       </span>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>
         </footer>
+
       </div>
   );
 }

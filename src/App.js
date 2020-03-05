@@ -1,10 +1,15 @@
 import React from 'react';
-import './assets/base.scss'
+import './assets/base.scss';
 import './App.scss';
-import logo from './assets/img/logo.png'
-import arrow from './assets/img/arrow.png'
-import family from './assets/img/family.png'
-import child from './assets/img/child.png'
+import logo from './assets/img/logo.png';
+import arrow from './assets/img/arrow.png';
+import family from './assets/img/family.png';
+import child from './assets/img/child.png';
+import gerb from './assets/img/gerb.png';
+import phone from './assets/img/phone.png';
+import email from './assets/img/email.png';
+import ReactPaginate from 'react-paginate';
+
 
 function App() {
   return (
@@ -73,23 +78,69 @@ function App() {
 
             {
               [0, 1, 2].map(i => {
-              return (
-                  <div className={'card'}>
-                    <div className={'card-about'}>
-                      <div className={'card-about-name'}>Анна С.</div>
-                      <div className={'card-about-city'}>Кабардино-Балкарская Республика</div>
-                      <div className={'card-about-age'}>16 лет , девочка</div>
-                      <p className={'card-about-info'}>Анна активная и эмоциональная девочка</p>
+                return (
+                    <div className={'card'} key={i}>
+                      <div className={'card-about'}>
+                        <div className={'card-about-name'}>Анна С.</div>
+                        <div className={'card-about-city'}>Кабардино-Балкарская Республика</div>
+                        <div className={'card-about-age'}>16 лет , девочка</div>
+                        <p className={'card-about-info'}>Анна активная и эмоциональная девочка</p>
+                      </div>
+                      <img src={child} alt="child"/>
                     </div>
-                    <img src={child} alt="child"/>
-                  </div>
-              )})
+                )
+              })
             }
 
+            <ReactPaginate
+                breakLabel={'...'}
+                breakClassName={'break-me'}
+                pageCount={122}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={2}
+                onPageChange={() => {
+                }}
+                containerClassName={'pagination'}
+                subContainerClassName={'pages pagination'}
+                activeClassName={'active'}
+            />
           </div>
-
-
         </div>
+
+        <footer>
+          <div className={'footer-top'}>
+            <div className={'footer-bottom'}>
+              <div className="container">
+                <div className="row">
+
+                  <div className="footer-about">
+                    <img src={gerb} alt="logo" className={'footer-about-gerb'}/>
+                    <span className={'footer-about-caption'}>
+                      Министерство просвещения <br/> РОССИЙСКОЙ ФЕДЕРАЦИИ
+                    </span>
+                  </div>
+
+                  <div className="footer-info">
+                    <span>
+                    <img src={phone} alt="logo"/>
+                    <span>
+                      +7 (495) 539-55-19
+                    </span>
+                      </span>
+                    <span>
+                    <img src={email} alt="logo"/>
+                    <span>
+                     Вопросы по технической поддержке сайта
+                    </span>
+                      </span>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
   );
 }

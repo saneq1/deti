@@ -77,6 +77,9 @@ hr {
 li{
   list-style-type:none;
 }
+ul{
+  padding-inline-start: 0;
+}
 
 
 //
@@ -116,6 +119,10 @@ abbr[data-original-title] { // 1
   cursor: help; // 3
   border-bottom: 0; // 4
   text-decoration-skip-ink: none; // 5
+}
+
+hr{
+  border: none;
 }
 
 address {

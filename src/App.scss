@@ -1,28 +1,32 @@
 .app {
-
+  .row{
+    display: flex;
+    align-items: center;
+  }
   .container {
     width: 100%;
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 15px;
   }
- &-header{
+ .header{
 
    &-top{
-     background: red;
      height: 69px;
    }
    &-bottom{
      height: 100%;
-     background: blue;
+     background-color: #1641a8;
      display: flex;
      align-items: center;
-     span{
+     h1{
        font-family:"Roboto Condensed" ;
        color: #ffffff;
-       font-size: 16px;
+       line-height: 1rem;
+       font-size: 1rem;
        text-transform: uppercase;
        margin-left: 13px;
+       font-weight: 700;
      }
    }
  }

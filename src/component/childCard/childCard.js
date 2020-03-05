@@ -1,4 +1,5 @@
 import React from "react";
+import './childCard.scss';
 
 const ChildCard = ({child}) => {
   const url = 'http://deti.dev.eit.edu.ru';

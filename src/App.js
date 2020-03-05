@@ -25,7 +25,6 @@ function App() {
 
   return (
       <div className="app">
-
         <header className="header">
           <div className={'header-top'}>
             <div className={'header-bottom'}>
@@ -48,7 +47,6 @@ function App() {
         </header>
 
         <div className="container">
-
           <div className={'info'}>
             <span className={'info-title'}>банк данных</span>
             <hr/>
@@ -82,20 +80,15 @@ function App() {
               <button className={'search-inner-button'}> Искать</button>
             </div>
           </div>
-
           <div className={'list'}>
             <hr/>
             <div className={'list-counter'}>Нашлось 43 159 анкет</div>
-
             {
               childrens.map(child => {
                 return <ChildCard child={child} key={child.id}/>
               })
             }
-
           </div>
-
-
         </div>
       </div>
   );

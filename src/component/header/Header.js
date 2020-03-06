@@ -4,7 +4,7 @@ import logo from "../../assets/img/logo.png";
 import arrow from "../../assets/img/arrow.png";
 
 
-const Header = (props) => {
+const Header = () => {
   return (
       <header className="header">
         <div className={'header-top'}>
@@ -20,8 +20,8 @@ const Header = (props) => {
         <div className="container">
           <nav className={'navigation'}>
             <ul>
-              <li><a href="/">Главная</a> <img src={arrow} alt=""/></li>
-              <li><a href="/">Банк данных</a></li>
+              <li>Главная<img src={arrow} alt=""/></li>
+              <li>Банк данных</li>
             </ul>
           </nav>
         </div>

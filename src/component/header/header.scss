@@ -45,6 +45,11 @@
         font-size: 14px;
         font-weight: 400;
         line-height: 1rem;
+        cursor: pointer;
+
+        &:first-child {
+          color: #2f65e2;
+        }
 
         img {
           margin: 0 17px;

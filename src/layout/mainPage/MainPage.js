@@ -16,7 +16,7 @@ function MainPage() {
   const genders = useSelector(state => state.filters.genders);
   const {data: children, total, pages} = useSelector(state => state.children, shallowEqual);
   const [gender, setGender] = useState();
-  const [page, setPage] = useState(7);
+  const [page, setPage] = useState(0);
 
 
   useEffect(() => {
@@ -71,11 +71,12 @@ function MainPage() {
                   genders.map(gender => <label key={gender.id} className="checkbox">
                     <input
                         type="radio"
+                        className="checkbox-radio"
                         name={'search'}
                         value={gender.id}
                         onChange={event => setGender(event.target.value)}
                     /> <span
-                      className="radiomark">{gender.title}</span>
+                      className="checkbox-text">{gender.title}</span>
                   </label>)
                 }
               </div>

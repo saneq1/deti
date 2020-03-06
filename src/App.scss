@@ -86,7 +86,7 @@
           }
           &-text{
             position: relative;
-            padding: 5px 0 5px 25px;
+            padding: 0 30px 5px 30px;
             display: inline-block;
 
             &::before{
@@ -94,22 +94,23 @@
               display: block;
               width: 20px;
               height: 20px;
-              border: 1px solid black;
+              border: 1px solid #d7dbe0;
               position: absolute;
+              background: white;
               border-radius: 50%;
-              top: 0;
+              top: 2px;
               left: 0;
             }
 
             &::after{
               content: '';
               position: absolute;
-              top: 5px;
+              top: 7px;
               left: 5px;
               display: block;
               width: 10px;
               height: 10px;
-              background-color: green;
+              background-color: #3b4255;
               opacity: 0;
               border-radius: 50%;
             }

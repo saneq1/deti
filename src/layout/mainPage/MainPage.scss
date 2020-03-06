@@ -149,17 +149,3 @@ $yellow: #f7921e;
     }
   }
 }
-
-@media (max-width: 360px) {
-  .footer {
-    overflow-y: hidden;
-    overflow-x: scroll;
-
-    .footer-top {
-      .footer-bottom {
-        padding-top: 20px;
-      }
-    }
-  }
-}
-

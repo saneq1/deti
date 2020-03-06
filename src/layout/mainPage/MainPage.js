@@ -5,8 +5,8 @@ import family from '../../assets/img/family.png'
 import ReactPaginate from 'react-paginate';
 import ChildCard from "../../component/childCard/childCard";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {filtersActions} from "../../config/redux/filters/filtersActions";
-import {childrenActions} from "../../config/redux/children/childrenActions";
+import {filtersActions} from "../../redux/filters/filtersActions";
+import {childrenActions} from "../../redux/children/childrenActions";
 import Header from "../../component/header/Header";
 import Footer from "../../component/footer/Footer";
 import RadioButton from "../../component/radioButton/radioButton";

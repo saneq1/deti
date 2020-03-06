@@ -1,3 +1,6 @@
+$blue: #154ec9;
+$yellow: #f7921e;
+
 .app {
   * {
     font-family: "Roboto", serif;
@@ -31,7 +34,7 @@
       display: block;
       width: 76px;
       height: 3px;
-      background-color: #f7921e;
+      background-color: $yellow;
       margin: 17px 0;
     }
 
@@ -45,7 +48,7 @@
         span {
           &:first-child {
             display: block;
-            color: #f7921e;
+            color: $yellow;
             font-size: 70px;
             font-weight: 700;
             line-height: 70px;
@@ -127,7 +130,7 @@
         height: 48px;
         color: white;
         border-radius: 4px;
-        background-color: #154ec9;
+        background-color: $blue;
         align-self: center;
         border: none;
         margin-top: auto;
@@ -166,7 +169,7 @@
 
         &:nth-last-child(2) {
           background: #eeeeee;
-          color: #154ec9;
+          color: $blue;
         }
 
         a {

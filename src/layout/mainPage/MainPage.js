@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../assets/base.scss'
 import '../../App.scss';
 import family from '../../assets/img/family.png'
@@ -18,24 +18,18 @@ function MainPage() {
   const [gender, setGender] = useState();
   const [page, setPage] = useState(0);
 
-
   useEffect(() => {
-    dispatch(childrenActions.getChildren({genderId: gender, page}))
+    dispatch(childrenActions.getChildren({genderId: gender, page: page + 1}))
   }, [page]);
-
-  const selectGender = useMemo(() => (gender) => dispatch(filtersActions.selectGender(gender)), [dispatch]);
 
   useEffect(() => {
     dispatch(filtersActions.listGenders())
   }, []);
 
   const buttonSearch = () => {
-
     setPage(0);
-
-    dispatch(childrenActions.getChildren({genderId: gender, page}));
+    dispatch(childrenActions.getChildren({genderId: gender}));
   }
-
 
   return (
       <div className="app">
@@ -93,6 +87,7 @@ function MainPage() {
               })
             }
             <ReactPaginate
+                key={page}
                 breakLabel={'...'}
                 breakClassName={'break-me'}
                 pageCount={pages}
@@ -104,6 +99,7 @@ function MainPage() {
                 subContainerClassName={'pages pagination'}
                 activeClassName={'active'}
             />
+            {console.log(page)}
           </div>
         </section>
 

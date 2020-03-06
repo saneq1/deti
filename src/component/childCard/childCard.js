@@ -2,8 +2,9 @@ import React from "react";
 import './childCard.scss'
 import TextEllipsis from 'react-text-ellipsis';
 
+const url = 'http://deti.dev.eit.edu.ru';
+
 const ChildCard = ({child}) => {
-  const url = 'http://deti.dev.eit.edu.ru';
 
   return (
       <div className='card'>

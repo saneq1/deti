@@ -3,17 +3,6 @@ import {childrenActions} from "./childrenActions";
 import {getType} from "../utils";
 
 export const childrenReducers = combineReducers({
-  isLoading: (state = false, action) => {
-    switch (action.type) {
-      case getType(childrenActions.list.request):
-        return true;
-      case getType(childrenActions.list.failure):
-      case getType(childrenActions.list.success):
-        return false;
-      default:
-        return state
-    }
-  },
   data: (state = [], action) => {
     switch (action.type) {
       case getType(childrenActions.list.success):

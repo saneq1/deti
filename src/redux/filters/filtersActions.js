@@ -13,7 +13,6 @@ const actions = {
         }
     ).catch(error => dispatch(actions.genders.failure(error)))
   },
-  selectGender: (gender) => ({type: '@FILTERS/SELECT-GENDER', payload: gender}),
   genders: {
     request: () => ({type: '@FILTERS/GENDERS_REQUEST'}),
     success: data => ({type: '@FILTERS/GENDERS_SUCCESS', payload: data}),

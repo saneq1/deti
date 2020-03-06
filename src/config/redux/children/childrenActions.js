@@ -4,7 +4,6 @@ export const childrenActions = {
   getChildren: (params) => (dispatch) => {
     dispatch(childrenActions.list.request());
     axios.get('http://deti.dev.eit.edu.ru/api/children', {params}).then(response => {
-      console.log('test')
       if (response.status === 200) {
         dispatch(childrenActions.list.success(response.data))
       } else {

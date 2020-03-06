@@ -1,4 +1,5 @@
 import React from "react";
+import './childCard.scss'
 import TextEllipsis from 'react-text-ellipsis';
 
 const ChildCard = ({child}) => {

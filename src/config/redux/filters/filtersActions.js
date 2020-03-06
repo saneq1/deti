@@ -15,10 +15,10 @@ const actions = {
   },
   selectGender: (gender) => ({type: '@FILTERS/SELECT-GENDER', payload: gender}),
   genders: {
-    request:() => ({type: '@FILTERS/GENDERS_REQUEST'}),
+    request: () => ({type: '@FILTERS/GENDERS_REQUEST'}),
     success: data => ({type: '@FILTERS/GENDERS_SUCCESS', payload: data}),
     failure: error => ({type: '@FILTERS/GENDERS_FAILURE', payload: error})
   }
 };
 
-export {actions as  filtersActions}
+export {actions as filtersActions}

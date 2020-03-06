@@ -24,6 +24,6 @@ export const childrenReducers = combineReducers({
         return state;
     }
   },
-  total: (state = "", action) => action.type === getType(childrenActions.list.success)? action.payload.meta.total: state,
-  pages: (state = 0, action) => action.type === getType(childrenActions.list.success)? action.payload.meta.pages: state,
+  total: (state = "", action) => action.type === getType(childrenActions.list.success) ? action.payload.meta.total : state,
+  pages: (state = 0, action) => action.type === getType(childrenActions.list.success) ? action.payload.meta.pages : state,
 });

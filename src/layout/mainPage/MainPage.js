@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../../assets/base.scss'
-import '../../App.scss';
+import './MainPage.scss';
 import family from '../../assets/img/family.png'
 import ReactPaginate from 'react-paginate';
 import ChildCard from "../../component/childCard/childCard";
@@ -9,7 +9,7 @@ import {filtersActions} from "../../config/redux/filters/filtersActions";
 import {childrenActions} from "../../config/redux/children/childrenActions";
 import Header from "../../component/header/Header";
 import Footer from "../../component/footer/Footer";
-
+import RadioButton from "../../component/radioButton/radioButton";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -51,33 +51,28 @@ function MainPage() {
               </div>
             </div>
           </div>
-
           <div className="search">
             <div className="search-inner">
               <span>Пол</span>
               <div className="search-inner-radio">
-                <label className="checkbox"> <input type="radio" name={'search'} value={undefined}
-                                                          className="checkbox-radio"
-                                                    onChange={event => setGender(event.target.value)}/>
-                <span className="checkbox-text">не важно</span>
-                </label>
+                <RadioButton
+                    value={undefined}
+                    onChange={event => setGender(event.target.value)}
+                    text='не важно'
+                />
                 {
-                  genders.map(gender => <label key={gender.id} className="checkbox">
-                    <input
-                        type="radio"
-                        className="checkbox-radio"
-                        name={'search'}
-                        value={gender.id}
-                        onChange={event => setGender(event.target.value)}
-                    /> <span
-                      className="checkbox-text">{gender.title}</span>
-                  </label>)
+                  genders.map(gender => <RadioButton
+                          key={gender.id}
+                          value={gender.id}
+                          onChange={event => setGender(event.target.value)}
+                          text={gender.id === 1 ? 'мальчик' : 'девочка'}
+                      />
+                  )
                 }
               </div>
-              <button className={'search-inner-button'} onClick={() => buttonSearch()}> Искать</button>
+              <button className='search-inner-button' onClick={() => buttonSearch()}> Искать</button>
             </div>
           </div>
-
           <div className={'list'}>
             <hr/>
             <div className={'list-counter'}>Нашлось {total} анкет</div>
@@ -99,7 +94,6 @@ function MainPage() {
                 subContainerClassName={'pages pagination'}
                 activeClassName={'active'}
             />
-            {console.log(page)}
           </div>
         </section>
 

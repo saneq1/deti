@@ -1,25 +1,29 @@
 import {combineReducers} from "redux";
 import {childrenActions} from "./childrenActions";
-import {getActionType} from "../utils";
+import {getType} from "../utils";
 
 export const childrenReducers = combineReducers({
   isLoading: (state = false, action) => {
     switch (action.type) {
-      case getActionType(childrenActions.list.request):
+      case getType(childrenActions.list.request):
         return true;
-      case getActionType(childrenActions.list.failure):
-      case getActionType(childrenActions.list.success):
+      case getType(childrenActions.list.failure):
+      case getType(childrenActions.list.success):
         return false;
+      default:
+        return state
     }
   },
   data: (state = [], action) => {
     switch (action.type) {
-      case getActionType(childrenActions.list.success):
-        return action.payload;
-      case getActionType(childrenActions.list.failure):
+      case getType(childrenActions.list.success):
+        return action.payload.rows;
+      case getType(childrenActions.list.failure):
         return [];
       default:
         return state;
     }
   },
+  total: (state = "", action) => action.type === getType(childrenActions.list.success)? action.payload.meta.total: state,
+  pages: (state = 0, action) => action.type === getType(childrenActions.list.success)? action.payload.meta.pages: state,
 });

@@ -63,8 +63,9 @@ function MainPage() {
               <span>Пол</span>
               <div className="search-inner-radio">
                 <label className="checkbox"> <input type="radio" name={'search'} value={undefined}
-                                                    onChange={event => setGender(event.target.value)}/> <span
-                    className="radiomark">не важно</span>
+                                                          className="checkbox-radio"
+                                                    onChange={event => setGender(event.target.value)}/>
+                <span className="checkbox-text">не важно</span>
                 </label>
                 {
                   genders.map(gender => <label key={gender.id} className="checkbox">
@@ -102,7 +103,6 @@ function MainPage() {
                 subContainerClassName={'pages pagination'}
                 activeClassName={'active'}
             />
-            <button onClick={() => setPage(0)}>ввв</button>
           </div>
         </section>
 

@@ -15,20 +15,16 @@ const Footer = (props) => {
                   <img src={gerb} alt="logo" className={'footer-about-gerb'}/>
                   <span className={'footer-about-caption'}>
                       Министерство просвещения <br/> РОССИЙСКОЙ ФЕДЕРАЦИИ
-                    </span>
+                  </span>
                 </div>
                 <div className="footer-info">
                     <span>
                     <img src={phone} alt="logo"/>
-                    <span>
-                      +7 (495) 539-55-19
-                    </span>
+                    <span>+7 (495) 539-55-19</span>
                       </span>
                   <span>
                     <img src={email} alt="logo"/>
-                    <span>
-                     Вопросы по технической поддержке сайта
-                    </span>
+                  <span>Вопросы по технической поддержке сайта</span>
                       </span>
                 </div>
               </div>

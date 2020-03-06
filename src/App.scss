@@ -80,6 +80,44 @@
       }
 
       &-radio {
+        .checkbox{
+          &-radio{
+            display: none;
+          }
+          &-text{
+            position: relative;
+            padding: 5px 0 5px 25px;
+            display: inline-block;
+
+            &::before{
+              content: '';
+              display: block;
+              width: 20px;
+              height: 20px;
+              border: 1px solid black;
+              position: absolute;
+              border-radius: 50%;
+              top: 0;
+              left: 0;
+            }
+
+            &::after{
+              content: '';
+              position: absolute;
+              top: 5px;
+              left: 5px;
+              display: block;
+              width: 10px;
+              height: 10px;
+              background-color: green;
+              opacity: 0;
+              border-radius: 50%;
+            }
+          }
+          &-radio:checked + .checkbox-text::after{
+            opacity: 1;
+          }
+        }
 
       }
 
